@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player(const char * name, int width, int height, SDL_Renderer * renderer, float x, float y)
+Player::Player(const char * name, int width, int height, SDL_Renderer * renderer, float x, float y) : active(false)
 {
 	this->width = width;
 	this->height = height;
@@ -41,8 +41,11 @@ void Player::update()
 
 void Player::draw()
 {
-	dstrect = { int(this->posX), int(this->posY), this->width, this->height };
-	SDL_RenderCopy(m_renderer, texture, &srcrect, &dstrect);
+	if (active)
+	{
+		dstrect = { int(this->posX), int(this->posY), this->width, this->height };
+		SDL_RenderCopy(m_renderer, texture, &srcrect, &dstrect);
+	}
 }
 
 void Player::handleInput(SDL_Keycode key)

@@ -28,6 +28,10 @@ public:
 
 private:
 	bool isRunning;
+
+	int startX = 0;
+	int startY = 0;
+
 	SDL_Window * window;
 	SDL_Renderer * renderer;
 

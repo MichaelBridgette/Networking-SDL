@@ -1,4 +1,1 @@
-﻿  main.cpp
-c:\users\liamh\desktop\networking\server\server\server\main.cpp(11): warning C4326: return type of 'main' should be 'int' instead of 'void'
-c:\users\liamh\desktop\networking\server\server\server\main.cpp(124): warning C4018: '<': signed/unsigned mismatch
-  Server.vcxproj -> C:\Users\liamh\Desktop\Networking\Server\Server\Debug\Server.exe
+﻿  Server.vcxproj -> C:\Users\liamh\Desktop\Networking-SDL\Server\Debug\Server.exe

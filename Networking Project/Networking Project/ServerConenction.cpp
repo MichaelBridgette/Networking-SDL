@@ -10,7 +10,7 @@ ServerConnection::~ServerConnection()
 
 bool ServerConnection::initialise()
 {
-	std::string serverIp = "149.153.106.148";
+	std::string serverIp = "149.153.106.151";
 	int serverPort = 54000;
 
 	WSAData data;
@@ -70,7 +70,6 @@ std::string ServerConnection::receiveMessage()
 	if (bytesReceived > 0)
 	{
 		std::string receivedMessage = std::string(m_buf, 0, bytesReceived);
-		std::cout << "Received: " << receivedMessage << std::endl;
 		return receivedMessage;
 	}
 	return "";

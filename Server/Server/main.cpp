@@ -12,6 +12,7 @@ void main()
 	// Initialze winsock
 	WSADATA wsData;
 	WORD ver = MAKEWORD(2, 2);
+	int connCount = 0;
 
 	int wsOk = WSAStartup(ver, &wsData);
 	if (wsOk != 0)
@@ -86,7 +87,8 @@ void main()
 				FD_SET(client, &master);
 
 				// Send a welcome message to the connected client
-				string welcomeMsg = std::to_string(socketCount);
+				connCount++;
+				string welcomeMsg = std::to_string(connCount);
 				send(client, welcomeMsg.c_str(), welcomeMsg.size() + 1, 0);
 			}
 			else // It's an inbound message

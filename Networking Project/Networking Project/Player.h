@@ -25,6 +25,7 @@ public:
 	bool down;
 	bool left;
 	bool right;
+	bool active;
 private:
 	// Private Members
 	SDL_Renderer * m_renderer;

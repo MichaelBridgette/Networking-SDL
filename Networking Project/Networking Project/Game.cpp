@@ -59,6 +59,7 @@ void Game::init(const char * title, int xPos, int yPos, int width, int height, b
 	//player1->giveControl(true);
 	player2 = new Player("circle2.png", 64, 64, renderer, 500, 500);
 	player2->giveControl(true);
+	player2->active = true;
 
 
 
@@ -112,6 +113,12 @@ void Game::handleEvents()
 		case SDLK_s:
 			player2->down = false;
 			break;
+		case SDLK_RETURN:
+			if (state == GameState::GAMEOVER)
+			{
+				state == GameState::PLAY;
+			}
+			break;
 		default:
 			break;
 		}
@@ -126,28 +133,35 @@ void Game::update()
 	switch (state)
 	{
 	case GameState::PLAY:
+		m_serverConn.sendMessage(std::to_string(player2->posX) + "," + std::to_string(player2->posY));
+		received = m_serverConn.receiveMessage();
 		player2->update();
-		if (player1->collisionDetection(player2->posX, player2->posY, player2->radius))
+		if (player1->collisionDetection(player2->posX, player2->posY, player2->radius) && player1->active && player2->active)
 		{
 			//std::cout << "Collision Detected!!!" << std::endl;
 			state = GameState::GAMEOVER;
+			player2->posX = startX;
+			player2->posY = startY;
 		}
-		m_serverConn.sendMessage(std::to_string(player2->posX) + "," + std::to_string(player2->posY));
-		received = m_serverConn.receiveMessage();
 		if ("" != received)
 		{
 			if ("1" == received)
 			{
 				player2->posX = 100;
 				player2->posY = 100;
+				startX = 100;
+				startY = 100;
 			}
 			else if ("2" == received)
 			{
 				player2->posX = 500;
 				player2->posY = 500;
+				startX = 500;
+				startY = 500;
 			}
 			else
 			{
+				player1->active = true;
 				std::string delimeter = ",";
 				std::string otherX = received.substr(0, received.find(delimeter));
 				std::string otherY = received.substr(received.find(delimeter) + 1, received.length());
@@ -157,7 +171,7 @@ void Game::update()
 		}
 		break;
 	case GameState::GAMEOVER:
-
+		m_serverConn.sendMessage(std::to_string(player2->posX) + "," + std::to_string(player2->posY));
 		break;
 	default:
 		break;
