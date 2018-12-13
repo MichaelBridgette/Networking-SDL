@@ -116,7 +116,12 @@ void Game::handleEvents()
 		case SDLK_RETURN:
 			if (state == GameState::GAMEOVER)
 			{
-				state == GameState::PLAY;
+				state = GameState::PLAY;
+				player2->posX = startX;
+				player2->posY = startY;
+				player1->posX = startX2;
+				player1->posY = startY2;
+				player1->active = false;
 			}
 			break;
 		default:
@@ -138,10 +143,7 @@ void Game::update()
 		player2->update();
 		if (player1->collisionDetection(player2->posX, player2->posY, player2->radius) && player1->active && player2->active)
 		{
-			//std::cout << "Collision Detected!!!" << std::endl;
 			state = GameState::GAMEOVER;
-			player2->posX = startX;
-			player2->posY = startY;
 		}
 		if ("" != received)
 		{
@@ -151,22 +153,33 @@ void Game::update()
 				player2->posY = 100;
 				startX = 100;
 				startY = 100;
+				startX2 = 500;
+				startY2 = 500;
 			}
 			else if ("2" == received)
 			{
 				player2->posX = 500;
 				player2->posY = 500;
-				startX = 500;
-				startY = 500;
+				startX = 500.f;
+				startY = 500.f;
+				startX2 = 100;
+				startY2 = 100;
 			}
 			else
 			{
 				player1->active = true;
 				std::string delimeter = ",";
-				std::string otherX = received.substr(0, received.find(delimeter));
-				std::string otherY = received.substr(received.find(delimeter) + 1, received.length());
-				player1->posX = std::stoi(otherX);
-				player1->posY = std::stoi(otherY);
+				if (received.find(delimeter) != std::string::npos)
+				{
+					std::string otherX = received.substr(0, received.find(delimeter));
+					std::string otherY = received.substr(received.find(delimeter) + 1, received.length());
+					//std::cout << received << std::endl;
+					if (otherX != "" && otherY != "")
+					{
+						player1->posX = std::stoi(otherX);
+						player1->posY = std::stoi(otherY);
+					}
+				}
 			}
 		}
 		break;

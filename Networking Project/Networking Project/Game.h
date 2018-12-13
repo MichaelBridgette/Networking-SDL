@@ -29,8 +29,10 @@ public:
 private:
 	bool isRunning;
 
-	int startX = 0;
-	int startY = 0;
+	float startX = 0;
+	float startY = 0;
+	float startX2 = 0;
+	float startY2 = 0;
 
 	SDL_Window * window;
 	SDL_Renderer * renderer;

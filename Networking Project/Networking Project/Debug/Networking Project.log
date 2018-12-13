@@ -1,8 +1,1 @@
-﻿  Game.cpp
-c:\users\liamh\desktop\networking-sdl\networking project\networking project\game.cpp(119): warning C4553: '==': result of expression not used; did you intend '='?
-c:\users\liamh\desktop\networking-sdl\networking project\networking project\game.cpp(139): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\liamh\desktop\networking-sdl\networking project\networking project\game.cpp(143): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\liamh\desktop\networking-sdl\networking project\networking project\game.cpp(144): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\liamh\desktop\networking-sdl\networking project\networking project\game.cpp(168): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\liamh\desktop\networking-sdl\networking project\networking project\game.cpp(169): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  Networking Project.vcxproj -> C:\Users\liamh\Desktop\Networking-SDL\Networking Project\Debug\Networking Project.exe
+﻿  Networking Project.vcxproj -> C:\Users\liamh\Desktop\Networking-SDL\Networking Project\Debug\Networking Project.exe
