@@ -28,6 +28,7 @@ void Player::draw()
 	dstrect = { this->posX, this->posY, this->width, this->height };
 	SDL_RenderCopy(m_renderer, texture, &srcrect, &dstrect);
 }
+
 void Player::handleInput(SDL_Keycode key)
 {
 	if (hasControl)
@@ -59,21 +60,8 @@ void Player::giveControl(bool c)
 
 bool Player::collisionDetection(int x, int y, int r)
 {
-	int a;
-	int x2;
-	int y2;
-
-	a = radius + r;
-	x2 = posX - x;
-	y2 = posY - y;
-
-	if (a > sqrt((x2 * x2) + (y2 * y2))) {
-		return true;
-	}
-	else {
-		return false;
-	}
-
-
-	return false;
+	int a = radius + r;
+	int xDist = posX - x;
+	int yDist = posY - y;
+	return a > sqrt((xDist * xDist) + (yDist * yDist));
 }

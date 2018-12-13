@@ -1,18 +1,19 @@
-#include<SDL.h>
-#include<SDL_image.h>
-#include"Game.h"
+#include <SDL.h>
+#include <SDL_image.h>
+#include "Game.h"
 
-Game *game = nullptr;
+Game * game = nullptr;
+
 int main(int argc, char* argv[])
 {
 	game = new Game();
-	game->Init("Networking Project", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
-	while (game->Running())
+	game->init("Networking Project", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
+	while (game->running())
 	{
-		game->HandleEvents();
-		game->Update();
-		game->Draw();
+		game->handleEvents();
+		game->update();
+		game->draw();
 	}
-	game->Clean();
+	game->clean();
 	return 0;
 }
