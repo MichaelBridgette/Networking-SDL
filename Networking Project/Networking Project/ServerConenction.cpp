@@ -10,7 +10,7 @@ ServerConnection::~ServerConnection()
 
 bool ServerConnection::initialise()
 {
-	std::string serverIp = "192.168.0.178";
+	std::string serverIp = "149.153.106.148";
 	int serverPort = 54000;
 
 	WSAData data;

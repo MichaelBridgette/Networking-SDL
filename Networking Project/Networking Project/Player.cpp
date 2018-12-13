@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player(const char * name, int width, int height, SDL_Renderer * renderer, int x, int y)
+Player::Player(const char * name, int width, int height, SDL_Renderer * renderer, float x, float y)
 {
 	this->width = width;
 	this->height = height;
@@ -21,11 +21,27 @@ Player::Player(const char * name, int width, int height, SDL_Renderer * renderer
 
 void Player::update()
 {
+	if (left && inBoundaries())
+	{
+		posX -= 0.1;
+	}
+	if (right && inBoundaries())
+	{
+		posX += 0.1;
+	}
+	if (up && inBoundaries())
+	{
+		posY -= 0.1;
+	}
+	if (down && inBoundaries())
+	{
+		posY += 0.1;
+	}
 }
 
 void Player::draw()
 {
-	dstrect = { this->posX, this->posY, this->width, this->height };
+	dstrect = { int(this->posX), int(this->posY), this->width, this->height };
 	SDL_RenderCopy(m_renderer, texture, &srcrect, &dstrect);
 }
 
@@ -36,16 +52,16 @@ void Player::handleInput(SDL_Keycode key)
 		switch (key)
 		{
 		case SDLK_a:
-			posX += -5;
+			left = true;
 			break;
 		case SDLK_d:
-			posX += 5;
+			right = true;
 			break;
 		case SDLK_w:
-			posY += -5;
+			up = true;
 			break;
 		case SDLK_s:
-			posY += 5;
+			down = true;
 			break;
 		default:
 			break;
@@ -64,4 +80,33 @@ bool Player::collisionDetection(int x, int y, int r)
 	int xDist = posX - x;
 	int yDist = posY - y;
 	return a > sqrt((xDist * xDist) + (yDist * yDist));
+}
+
+bool Player::inBoundaries()
+{
+	if (posX  > 1200 - (radius*2))
+	{
+		posX = 1200 - (radius*2);
+		return false;
+	}
+
+	if (posX  < 0)
+	{
+		posX = 0;
+		return false;
+	}
+
+	if (posY  > 900 -(radius * 2))
+	{
+		posY = 900- (radius * 2);
+		return false;
+	}
+
+	if (posY  < 0)
+	{
+		posY = 0;
+		return false;
+	}
+
+	return true;
 }

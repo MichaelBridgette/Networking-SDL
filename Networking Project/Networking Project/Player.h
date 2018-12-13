@@ -9,18 +9,22 @@ class Player {
 
 public:
 	// Public Methods
-	Player(const char * name, int width, int height, SDL_Renderer * renderer, int x, int y);
+	Player(const char * name, int width, int height, SDL_Renderer * renderer, float x, float y);
 	void update();
 	void draw();
 	void handleInput(SDL_Keycode key);
 	void giveControl(bool c);
 	bool collisionDetection(int x, int y, int r);
-
+	bool inBoundaries();
 	// Public Members
-	int posX;
-	int posY;
+	float posX;
+	float posY;
 	int radius;
 
+	bool up;
+	bool down;
+	bool left;
+	bool right;
 private:
 	// Private Members
 	SDL_Renderer * m_renderer;
@@ -33,6 +37,10 @@ private:
 	int height;
 
 	bool hasControl;
+	Uint8* keys;
+
+	
+
 };
 
 #endif // !PLAYER_H

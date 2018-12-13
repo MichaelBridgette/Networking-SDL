@@ -7,6 +7,12 @@
 #include <SDL_image.h>
 #include "ServerConnection.h"
 #include "Player.h"
+#include <SDL_ttf.h>
+
+enum GameState {
+	PLAY,
+	GAMEOVER
+};
 
 class Game 
 {
@@ -29,6 +35,12 @@ private:
 
 	Player * player1;
 	Player * player2;
+
+	GameState state = GameState::PLAY;
+	TTF_Font* font;
+	SDL_Surface* surfaceMessage;
+	SDL_Texture* Message;
+	SDL_Rect Message_rect;
 };
 
 #endif // !GAME_H
