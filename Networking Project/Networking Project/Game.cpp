@@ -174,8 +174,18 @@ void Game::update()
 					//std::cout << received << std::endl;
 					if (otherX != "" && otherY != "")
 					{
-						player1->posX = std::stoi(otherX);
-						player1->posY = std::stoi(otherY);
+						try
+						{
+							int x = std::stoi(otherX);
+							int y = std::stoi(otherY);
+							player1->posX = x;
+							player1->posY = y;
+						}
+						catch (int e)
+						{
+							std::cout << "Exception: " << e << std::endl;
+						}
+
 					}
 				}
 			}
@@ -183,10 +193,11 @@ void Game::update()
 		if (player1->collisionDetection(player2->posX, player2->posY, player2->radius) && player1->active && player2->active)
 		{
 			state = GameState::GAMEOVER;
+			m_serverConn.sendMessage(std::to_string(player2->posX) + "," + std::to_string(player2->posY));
 		}
 		break;
 	case GameState::GAMEOVER:
-		//m_serverConn.sendMessage(std::to_string(player2->posX) + "," + std::to_string(player2->posY));
+
 		break;
 	default:
 		break;
