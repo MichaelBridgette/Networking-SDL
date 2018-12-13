@@ -138,13 +138,11 @@ void Game::update()
 	switch (state)
 	{
 	case GameState::PLAY:
+		player2->update();
 		m_serverConn.sendMessage(std::to_string(player2->posX) + "," + std::to_string(player2->posY));
 		received = m_serverConn.receiveMessage();
-		player2->update();
-		if (player1->collisionDetection(player2->posX, player2->posY, player2->radius) && player1->active && player2->active)
-		{
-			state = GameState::GAMEOVER;
-		}
+
+
 		if ("" != received)
 		{
 			if ("1" == received)
@@ -182,9 +180,13 @@ void Game::update()
 				}
 			}
 		}
+		if (player1->collisionDetection(player2->posX, player2->posY, player2->radius) && player1->active && player2->active)
+		{
+			state = GameState::GAMEOVER;
+		}
 		break;
 	case GameState::GAMEOVER:
-		m_serverConn.sendMessage(std::to_string(player2->posX) + "," + std::to_string(player2->posY));
+		//m_serverConn.sendMessage(std::to_string(player2->posX) + "," + std::to_string(player2->posY));
 		break;
 	default:
 		break;

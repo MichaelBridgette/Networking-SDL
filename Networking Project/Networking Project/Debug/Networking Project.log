@@ -1,1 +1,5 @@
-﻿  Networking Project.vcxproj -> C:\Users\liamh\Desktop\Networking-SDL\Networking Project\Debug\Networking Project.exe
+﻿  Game.cpp
+c:\users\liamh\desktop\networking-sdl\networking project\networking project\game.cpp(177): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\liamh\desktop\networking-sdl\networking project\networking project\game.cpp(178): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\liamh\desktop\networking-sdl\networking project\networking project\game.cpp(183): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Networking Project.vcxproj -> C:\Users\liamh\Desktop\Networking-SDL\Networking Project\Debug\Networking Project.exe
